@@ -1,0 +1,3 @@
+[submodule "aiortc"]
+	path = aiortc
+	url = https://github.com/johnboiles/aiortc

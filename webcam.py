@@ -61,7 +61,7 @@ def create_local_tracks(play_from, transcode=True, options=None, fps="30", resol
     global relay, webcam
 
     if play_from:
-        player = MediaPlayer(play_from)
+        player = MediaPlayer(play_from, transcode=transcode)
         return player.audio, JpegSnapshotTrack(player.video)
     else:
         if options is None:
@@ -76,10 +76,10 @@ def create_local_tracks(play_from, transcode=True, options=None, fps="30", resol
                     "video=Integrated Camera", format="dshow", options=options
                 )
             else:
-                webcam = MediaPlayer("/dev/video0", format="v4l2", options=options)
+                webcam = MediaPlayer("/dev/video0", transcode=transcode, format="v4l2", options=options)
 
             relay = MediaRelay()
-        return None, relay.subscribe(JpegSnapshotTrack(webcam.video))
+        return None, relay.subscribe(JpegSnapshotTrack(webcam.video), buffered=True)
 
 
 async def index(request):
