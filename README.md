@@ -12,6 +12,7 @@ git submodule init
 git submodule update
 python3 -m venv venv
 source venv/bin/activate
+sudo apt-get install libopus-dev libvpx-dev
 pip install --upgrade pip
 pip install aiohttp Pillow
 pip install -e ./aiortc/
